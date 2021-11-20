@@ -28,8 +28,6 @@
 
 [Link To Repository](https://github.com/PrinceNiyonshuti/location-app.git)
 
-[Link To Deployed App](https://itinerary-v3.netlify.app/)
-
 # 5. Documentation of your code where necessary
 
 before running the project first initialize the project to get tailwindcss modules , using the steps below

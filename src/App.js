@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+import axios from "axios";
+import React, { useState } from "react";
+import Header from "./Layout/Header";
+import Weather from "./Layout/Weather";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const key = "3aa79aebbfd546bea5bda1f84f02d49f";
+	const API_KEY = "7b18cc37163c4edab47d67b012d38f68";
+	const [coordinates, setCoordinates] = useState(undefined);
+	const [weatherData, setWeatherData] = useState();
+	const [city, setCity] = useState(undefined);
+
+	const onSearchSubmit = async (country) => {
+		console.log(country);
+		axios
+			.get(
+				`https://api.opencagedata.com/geocode/v1/json?q=${country}&key=${key}`
+			)
+			.then((response) => {
+				if (response.data.results.length === 0) {
+					setCoordinates(undefined);
+				} else {
+					setCoordinates(response.data.results[0].geometry);
+					// getWeatherData(coordinates);
+				}
+			});
+	};
+
+	function getWeatherData(coordinates) {
+		const { lat, lng } = coordinates;
+		fetch(
+			`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data.daily);
+				setWeatherData(data.daily);
+				showWeatherData(data);
+				setCoordinates(undefined);
+			});
+	}
+	if (coordinates) {
+		getWeatherData(coordinates);
+	}
+
+	function showWeatherData(data) {
+		setCity(data.timezone);
+	}
+
+	return (
+		<div>
+			<Header city={city} onSearchSubmit={onSearchSubmit} />
+			{coordinates ? "Yes Loading ......." : "Nothing"}
+			{weatherData && <Weather weatherData={weatherData} />}
+		</div>
+	);
 }
 
 export default App;

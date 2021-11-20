@@ -14,6 +14,7 @@ function App() {
 
 	const onSearchSubmit = async (country) => {
 		console.log(country);
+		setWeatherData(undefined);
 		axios
 			.get(
 				`https://api.opencagedata.com/geocode/v1/json?q=${country}&key=${key}`
@@ -23,7 +24,6 @@ function App() {
 					setCoordinates(undefined);
 				} else {
 					setCoordinates(response.data.results[0].geometry);
-					setWeatherData(undefined);
 				}
 			});
 	};

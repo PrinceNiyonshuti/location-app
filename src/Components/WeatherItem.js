@@ -7,7 +7,7 @@ const WeatherItem = ({ day, tempDay, tempNight, icon }) => {
 	return (
 		<div className="weather-forecast-item">
 			<div className="day">
-				{dayName.toLocaleString("en-us", { weekday: "long" })}
+				{dayName.toLocaleString("en-us", { weekday: "short" })}
 			</div>
 			<img
 				src={"http://openweathermap.org/img/wn/" + icon + "@2x.png"}

@@ -6,7 +6,7 @@ function Loader() {
 	return (
 		<div>
 			<p className="center">
-				Coordinates Found and Searching for Weather Loading .......
+				Coordinates Found and Searching for Weather Forecast .......
 			</p>
 		</div>
 	);

@@ -17,7 +17,7 @@ class Header extends React.Component {
 					<div className="date-container">
 						<form onSubmit={this.handleSubmit}>
 							<div>
-								<label>Choose Country </label>
+								<label>Choose Country</label>
 								<select
 									value={this.state.country}
 									onChange={(event) =>

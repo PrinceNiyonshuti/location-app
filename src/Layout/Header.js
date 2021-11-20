@@ -15,33 +15,34 @@ class Header extends React.Component {
 			<div className="container">
 				<div className="current-info">
 					<div className="date-container">
-						<div className="ui segment">
-							<form className="ui form" onSubmit={this.handleSubmit}>
-								<div className="field">
-									<label>Choose Country </label>
-									<select
-										value={this.state.country}
-										onChange={(event) =>
-											this.setState({ country: event.target.value })
-										}>
-										<option value="">-- Choose Country --</option>
-										<option value="Rwanda">Rwanda</option>
-										<option value="Burundi">Burundi</option>
-										<option value="Uganda">Uganda</option>
-										<option value="Tanzania">Tanzania</option>
-										<option value="Kenya">Kenya</option>
-									</select>
-									<button>Go</button>
-									{/* <input
+						<form onSubmit={this.handleSubmit}>
+							<div>
+								<label>Choose Country </label>
+								<select
+									value={this.state.country}
+									onChange={(event) =>
+										this.setState({ country: event.target.value })
+									}>
+									<option value="">-- Choose Country --</option>
+									<option value="Rwanda">Rwanda</option>
+									<option value="Burundi">Burundi</option>
+									<option value="Uganda">Uganda</option>
+									<option value="Tanzania">Tanzania</option>
+									<option value="Kenya">Kenya</option>
+									<option value="Russia">Russia</option>
+									<option value="USA">USA</option>
+									<option value="Australia">Australia</option>
+								</select>
+								<button className="go-btn">Go</button>
+								{/* <input
 										type="text"
 										value={this.state.country}
 										onChange={(event) =>
 											this.setState({ country: event.target.value })
 										}
 									/> */}
-								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 
 					<div className="date-container">

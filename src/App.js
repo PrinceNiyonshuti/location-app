@@ -2,13 +2,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Header from "./Layout/Header";
+import Loader from "./Layout/Loader";
 import Weather from "./Layout/Weather";
 
 function App() {
 	const key = "3aa79aebbfd546bea5bda1f84f02d49f";
 	const API_KEY = "7b18cc37163c4edab47d67b012d38f68";
 	const [coordinates, setCoordinates] = useState(undefined);
-	const [weatherData, setWeatherData] = useState();
+	const [weatherData, setWeatherData] = useState(undefined);
 	const [city, setCity] = useState(undefined);
 
 	const onSearchSubmit = async (country) => {
@@ -22,7 +23,7 @@ function App() {
 					setCoordinates(undefined);
 				} else {
 					setCoordinates(response.data.results[0].geometry);
-					// getWeatherData(coordinates);
+					setWeatherData(undefined);
 				}
 			});
 	};
@@ -51,8 +52,9 @@ function App() {
 	return (
 		<div>
 			<Header city={city} onSearchSubmit={onSearchSubmit} />
-			{coordinates ? "Yes Loading ......." : "Nothing"}
-			{weatherData && <Weather weatherData={weatherData} />}
+			{coordinates ? <Loader /> : " "}
+
+			{weatherData ? <Weather weatherData={weatherData} /> : ""}
 		</div>
 	);
 }

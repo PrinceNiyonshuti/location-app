@@ -17,11 +17,26 @@ body {
 	font-family: "Poppins", sans-serif;
 }
 
+select {
+	width: 50%;
+	padding: 6px 20px;
+	border: none;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+}
+
 .container {
 	padding: 60px 70px;
 	color: #fff;
 }
 
+.center {
+	text-align: center;
+	border: 3px solid gray;
+	background: white;
+	margin-left: 150px;
+	margin-right: 150px;
+}
 .current-info {
 	display: flex;
 	justify-content: space-between;

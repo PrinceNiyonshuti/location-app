@@ -7,7 +7,7 @@ class Header extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// this.setState({ country: e.target.value });
+		this.setState({ country: e.target.value });
 		this.props.onSearchSubmit(e.target.value);
 		console.log(e.target.value);
 	};
@@ -19,7 +19,7 @@ class Header extends React.Component {
 					<div className="date-container">
 						<form>
 							<div>
-								<label>Choose Country</label>
+								{/* <label>Choose Country</label> */}
 								<select value={this.state.country} onChange={this.handleSubmit}>
 									<option value="">-- Choose Country --</option>
 									<option value="Rwanda">Rwanda</option>

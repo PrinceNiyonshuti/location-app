@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Header from "./Layout/Header";
 import Loader from "./Layout/Loader";
+import Searching from "./Layout/Searching";
 import Weather from "./Layout/Weather";
 
 function App() {
@@ -11,9 +12,11 @@ function App() {
 	const [coordinates, setCoordinates] = useState(undefined);
 	const [weatherData, setWeatherData] = useState(undefined);
 	const [city, setCity] = useState(undefined);
+	const [searching, setSearching] = useState(false);
 
 	const onSearchSubmit = async (country) => {
 		setWeatherData(undefined);
+		setSearching(true);
 		axios
 			.get(
 				`https://api.opencagedata.com/geocode/v1/json?q=${country}&key=${key}`
@@ -23,6 +26,7 @@ function App() {
 					setCoordinates(undefined);
 				} else {
 					setCoordinates(response.data.results[0].geometry);
+					setSearching(false);
 				}
 			});
 	};
@@ -34,12 +38,13 @@ function App() {
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data.daily);
+				// console.log(data.daily);
 				setWeatherData(data.daily);
 				showWeatherData(data);
 				setCoordinates(undefined);
 			});
 	}
+
 	if (coordinates) {
 		getWeatherData(coordinates);
 	}
@@ -52,7 +57,7 @@ function App() {
 		<div>
 			<Header city={city} onSearchSubmit={onSearchSubmit} />
 			{coordinates ? <Loader /> : " "}
-
+			{searching ? <Searching /> : ""}
 			{weatherData ? <Weather weatherData={weatherData} /> : ""}
 		</div>
 	);

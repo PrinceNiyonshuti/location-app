@@ -13,7 +13,6 @@ function App() {
 	const [city, setCity] = useState(undefined);
 
 	const onSearchSubmit = async (country) => {
-		console.log(country);
 		setWeatherData(undefined);
 		axios
 			.get(
